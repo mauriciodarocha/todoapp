@@ -1,3 +1,19 @@
 body {
     margin: auto;
 }
+/*width larger than 374px*/
+@media screen and (min-width: 375px) {
+    .fieldgroup {
+        display: flex;
+    align-items: flex-end;
+    flex-direction: row;
+    }
+    .fieldgroup > input {
+        border-radius: 5px 0 0 5px;
+    }
+    .fieldgroup > button {
+        border-radius: 0 5px 5px 0;
+        white-space: nowrap;
+        padding-top: 13px;
+    }
+}

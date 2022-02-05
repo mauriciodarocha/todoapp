@@ -21,10 +21,11 @@ function App() {
       </header>
       <main>
         <form onSubmit={handleSubmit}>
-          <div>
+          <div className={'fieldgroup'}>
             <input type="text" placeholder='Type new task' value={task} onChange={(e) => {
               setTask(e.target.value)
             }} />
+            <button>Add task</button>
           </div>
           <div>
             <TodoListComponent todos={todos} />

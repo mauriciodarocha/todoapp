@@ -6,7 +6,7 @@ export default function TodoListComponent({todos}) {
     {todos && todos.length > 0 && <h4>Tasks:</h4>}
     <ol>
       {todos.map(todo => {
-        return <TodoComponent todo={todo} />
+        return <TodoComponent key={todo.taskId} todo={todo} />
       })}
     </ol>
   </>;
