@@ -1,43 +1,36 @@
-import { useState } from 'react'
-import logo from './logo.svg'
+import { useReducer, useState } from 'react'
+import { reducer } from './resources/reducer'
 import './App.css'
+import { ACTIONS } from './resources/contants';
+import TodoListComponent from './components/TodoListComponent';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, dispatch] = useReducer(reducer, []);
+  const [task, setTask] = useState("");
+
+  function handleSubmit(e) {
+    e.preventDefault()
+    dispatch({ type: ACTIONS.ADD_TODO, payload: { task } })
+    setTask("")
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-            count is: {count}
-          </button>
-        </p>
-        <p>
-          Edit <code>App.jsx</code> and save to test HMR updates.
-        </p>
-        <p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          {' | '}
-          <a
-            className="App-link"
-            href="https://vitejs.dev/guide/features.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Vite Docs
-          </a>
-        </p>
+        <h1>Things to do</h1>
       </header>
+      <main>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <input type="text" placeholder='Type new task' value={task} onChange={(e) => {
+              setTask(e.target.value)
+            }} />
+          </div>
+          <div>
+            <TodoListComponent todos={todos} />
+          </div>
+        </form>
+      </main>
     </div>
   )
 }
