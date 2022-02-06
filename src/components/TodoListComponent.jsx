@@ -4,7 +4,7 @@ import TodoComponent from './TodoComponent';
 export default function TodoListComponent({todos}) {
   return <>
     {todos && todos.length > 0 && <h4>Tasks:</h4>}
-    <ol>
+    <ol className='todo-list'>
       {todos.map(todo => {
         return <TodoComponent key={todo.taskId} todo={todo} />
       })}
